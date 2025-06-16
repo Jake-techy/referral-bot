@@ -15,14 +15,12 @@ tmpl = env.get_template("offers.html")           # looks for templates/offers.ht
 
 # ── 3. Fetch referral offers from RSS ──────────────────
 def fetch_offers():
-    feed = feedparser.parse("https://example.com/referral-deals.rss")
-    offers = []
-    for entry in feed.entries:
-        offers.append({
-            "title": entry.title,
-            "link":  entry.link
-        })
-    return offers
+    # ── TEST DATA: forces HTML to change each run
+    from datetime import datetime
+    return [{
+        "title": f"TEST OFFER at {datetime.utcnow().isoformat()}",
+        "link":  "https://example.com"
+    }]
 
 # ── 4. Render HTML + send Telegram alert ───────────────
 def publish():
